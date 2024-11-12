@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductApplicationTest {
@@ -25,18 +25,18 @@ public class ProductApplicationTest {
     @Test
     public void verificarSeSalvaImagemCorretamente(){
         productApplication.append(product);
-        verify(productService).save(product);
+        verify(productService, times(1)).save(product);
     }
 
     @Test
     public void verificarSeImagemERemovidaCorretamente(){
         productApplication.remove(product.getId());
-        verify(productService).remove(product.getId());
+        verify(productService, times(1)).remove(product.getId());
     }
 
     @Test
     public void verificarSeImagemEAtualizadaCorretamente(){
         productApplication.update(product.getId(), product);
-        verify(productService).update(product);
+        verify(productService, times(1)).update(product);
     }
 }
